@@ -18,8 +18,9 @@ function ngChartist($compile) {
     restrict: 'EA'
   };
 
-  function link(scope) {
-
+  function link(scope, element) {
+    //FORK: We needed this to properly set the ID when using the directive inside an ng-repeat
+    $(element).attr("id",scope.id);
     var graph = Chartist[scope.type]('#' + scope.id, scope.data, scope.options, scope.responsiveOptions);
 
     // set watcher for future data updates
